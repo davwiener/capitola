@@ -1,0 +1,20 @@
+<h1 class="mb-3">{{name}}</h1>
+<h4>{{description}}</h4>
+<label id="example-radio-group-label">Pick your favorite insurance</label>
+<div *ngIf="loading; else radioGroup">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #radioGroup>
+  <div class="options">
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      (change)="selectOption()"
+      [(ngModel)]="selectedOption">
+      <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+        <a [href]="option" target="_blank">{{option}}</a>
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+</ng-template>
+

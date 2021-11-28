@@ -1,0 +1,24 @@
+<div class="tower">
+  <div *ngIf="(layersSelector$ | async).loading; else tower ">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #tower>
+    <h2>Select your Tower insurance from the next possibilities</h2>
+    <div class="layers">
+      <app-layer class="layer" *ngFor="let layer of (layersSelector$ | async).data"
+                 [name]="layer.name"
+                 [value]="layer.value"
+                 [loading]="carriersLoading"
+                 [description]="layer.description"
+                 [options]="this.carriers[layer.value]"
+                 (emittOption)="optionSelected(layer.value, $event)"
+      >
+      </app-layer>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!canSave" (click)="onSave()">Save</button>
+  </ng-template>
+</div>
+
+
+
+
